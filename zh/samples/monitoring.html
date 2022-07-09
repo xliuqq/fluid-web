@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>示例 - 部署 prometheus 和 grafana 监控 Fluid 应用 | Fluid</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/fluid-web/fluid-stacked-color.svg">
+    <meta name="description" content="Fluid, 在云上为大数据以及AI应用的弹性数据提供抽象和加速服务。">
+    
+    <link rel="preload" href="/fluid-web/assets/css/0.styles.b64c0534.css" as="style"><link rel="preload" href="/fluid-web/assets/js/app.58484d9a.js" as="script"><link rel="preload" href="/fluid-web/assets/js/2.e04d0034.js" as="script"><link rel="preload" href="/fluid-web/assets/js/12.14b1f880.js" as="script"><link rel="prefetch" href="/fluid-web/assets/js/10.a9be955d.js"><link rel="prefetch" href="/fluid-web/assets/js/100.129f9b68.js"><link rel="prefetch" href="/fluid-web/assets/js/101.d17af958.js"><link rel="prefetch" href="/fluid-web/assets/js/102.1ff71569.js"><link rel="prefetch" href="/fluid-web/assets/js/11.67a03e31.js"><link rel="prefetch" href="/fluid-web/assets/js/13.2f5385ad.js"><link rel="prefetch" href="/fluid-web/assets/js/14.a2799770.js"><link rel="prefetch" href="/fluid-web/assets/js/15.befd4076.js"><link rel="prefetch" href="/fluid-web/assets/js/16.d438d3ef.js"><link rel="prefetch" href="/fluid-web/assets/js/17.dd94e399.js"><link rel="prefetch" href="/fluid-web/assets/js/18.2f78352d.js"><link rel="prefetch" href="/fluid-web/assets/js/19.6d147a14.js"><link rel="prefetch" href="/fluid-web/assets/js/20.1d732711.js"><link rel="prefetch" href="/fluid-web/assets/js/21.5187597e.js"><link rel="prefetch" href="/fluid-web/assets/js/22.71ab09c5.js"><link rel="prefetch" href="/fluid-web/assets/js/23.3d72a64f.js"><link rel="prefetch" href="/fluid-web/assets/js/24.d5f68a1e.js"><link rel="prefetch" href="/fluid-web/assets/js/25.aed6770e.js"><link rel="prefetch" href="/fluid-web/assets/js/26.caa44849.js"><link rel="prefetch" href="/fluid-web/assets/js/27.aff037f4.js"><link rel="prefetch" href="/fluid-web/assets/js/28.c902cbab.js"><link rel="prefetch" href="/fluid-web/assets/js/29.c4137934.js"><link rel="prefetch" href="/fluid-web/assets/js/3.bcceb8f1.js"><link rel="prefetch" href="/fluid-web/assets/js/30.994ccf9a.js"><link rel="prefetch" href="/fluid-web/assets/js/31.657914b4.js"><link rel="prefetch" href="/fluid-web/assets/js/32.91bcfdcf.js"><link rel="prefetch" href="/fluid-web/assets/js/33.a2059e28.js"><link rel="prefetch" href="/fluid-web/assets/js/34.57e4736e.js"><link rel="prefetch" href="/fluid-web/assets/js/35.387d2b05.js"><link rel="prefetch" href="/fluid-web/assets/js/36.9225825a.js"><link rel="prefetch" href="/fluid-web/assets/js/37.ab310be5.js"><link rel="prefetch" href="/fluid-web/assets/js/38.2ae53b39.js"><link rel="prefetch" href="/fluid-web/assets/js/39.f7c95bb1.js"><link rel="prefetch" href="/fluid-web/assets/js/4.4c33e4ef.js"><link rel="prefetch" href="/fluid-web/assets/js/40.29365d81.js"><link rel="prefetch" href="/fluid-web/assets/js/41.00b21e81.js"><link rel="prefetch" href="/fluid-web/assets/js/42.f26a2fc1.js"><link rel="prefetch" href="/fluid-web/assets/js/43.ad0554b1.js"><link rel="prefetch" href="/fluid-web/assets/js/44.1705b6b8.js"><link rel="prefetch" href="/fluid-web/assets/js/45.7bb8c2cc.js"><link rel="prefetch" href="/fluid-web/assets/js/46.191499fb.js"><link rel="prefetch" href="/fluid-web/assets/js/47.3b313875.js"><link rel="prefetch" href="/fluid-web/assets/js/48.127c37d0.js"><link rel="prefetch" href="/fluid-web/assets/js/49.29ce3fcb.js"><link rel="prefetch" href="/fluid-web/assets/js/5.e8c8f60f.js"><link rel="prefetch" href="/fluid-web/assets/js/50.65e68756.js"><link rel="prefetch" href="/fluid-web/assets/js/51.3f20c16e.js"><link rel="prefetch" href="/fluid-web/assets/js/52.287b274d.js"><link rel="prefetch" href="/fluid-web/assets/js/53.c756a7eb.js"><link rel="prefetch" href="/fluid-web/assets/js/54.f9ad0013.js"><link rel="prefetch" href="/fluid-web/assets/js/55.a81ca815.js"><link rel="prefetch" href="/fluid-web/assets/js/56.2338c5b5.js"><link rel="prefetch" href="/fluid-web/assets/js/57.09a85349.js"><link rel="prefetch" href="/fluid-web/assets/js/58.f3d1ae4a.js"><link rel="prefetch" href="/fluid-web/assets/js/59.a12e2d5a.js"><link rel="prefetch" href="/fluid-web/assets/js/6.d793cf87.js"><link rel="prefetch" href="/fluid-web/assets/js/60.d5473957.js"><link rel="prefetch" href="/fluid-web/assets/js/61.8d234cc8.js"><link rel="prefetch" href="/fluid-web/assets/js/62.74120c38.js"><link rel="prefetch" href="/fluid-web/assets/js/63.265a2169.js"><link rel="prefetch" href="/fluid-web/assets/js/64.97092fd7.js"><link rel="prefetch" href="/fluid-web/assets/js/65.67b01819.js"><link rel="prefetch" href="/fluid-web/assets/js/66.11325633.js"><link rel="prefetch" href="/fluid-web/assets/js/67.6cee865e.js"><link rel="prefetch" href="/fluid-web/assets/js/68.ee89fb42.js"><link rel="prefetch" href="/fluid-web/assets/js/69.70ec4033.js"><link rel="prefetch" href="/fluid-web/assets/js/7.a35ec519.js"><link rel="prefetch" href="/fluid-web/assets/js/70.a65b8aa1.js"><link rel="prefetch" href="/fluid-web/assets/js/71.9cb5167d.js"><link rel="prefetch" href="/fluid-web/assets/js/72.241ca77a.js"><link rel="prefetch" href="/fluid-web/assets/js/73.24e19dfa.js"><link rel="prefetch" href="/fluid-web/assets/js/74.8ca128a4.js"><link rel="prefetch" href="/fluid-web/assets/js/75.60cd53a4.js"><link rel="prefetch" href="/fluid-web/assets/js/76.7abbeef5.js"><link rel="prefetch" href="/fluid-web/assets/js/77.d4016d0b.js"><link rel="prefetch" href="/fluid-web/assets/js/78.1b9c5155.js"><link rel="prefetch" href="/fluid-web/assets/js/79.39ddbbb1.js"><link rel="prefetch" href="/fluid-web/assets/js/8.8a9f5924.js"><link rel="prefetch" href="/fluid-web/assets/js/80.04fa3ae6.js"><link rel="prefetch" href="/fluid-web/assets/js/81.0ceead8d.js"><link rel="prefetch" href="/fluid-web/assets/js/82.bc1f789e.js"><link rel="prefetch" href="/fluid-web/assets/js/83.2f4556ec.js"><link rel="prefetch" href="/fluid-web/assets/js/84.8f6f5fb6.js"><link rel="prefetch" href="/fluid-web/assets/js/85.e0f68661.js"><link rel="prefetch" href="/fluid-web/assets/js/86.d46bb047.js"><link rel="prefetch" href="/fluid-web/assets/js/87.596bac92.js"><link rel="prefetch" href="/fluid-web/assets/js/88.bb08995d.js"><link rel="prefetch" href="/fluid-web/assets/js/89.90b826c8.js"><link rel="prefetch" href="/fluid-web/assets/js/9.6dcb2ee1.js"><link rel="prefetch" href="/fluid-web/assets/js/90.6266dd37.js"><link rel="prefetch" href="/fluid-web/assets/js/91.ccd035f7.js"><link rel="prefetch" href="/fluid-web/assets/js/92.0d1cd97c.js"><link rel="prefetch" href="/fluid-web/assets/js/93.6abddcb3.js"><link rel="prefetch" href="/fluid-web/assets/js/94.f1718f46.js"><link rel="prefetch" href="/fluid-web/assets/js/95.26e49185.js"><link rel="prefetch" href="/fluid-web/assets/js/96.7e6f7a54.js"><link rel="prefetch" href="/fluid-web/assets/js/97.fc29e47f.js"><link rel="prefetch" href="/fluid-web/assets/js/98.53616654.js"><link rel="prefetch" href="/fluid-web/assets/js/99.14d69198.js">
+    <link rel="stylesheet" href="/fluid-web/assets/css/0.styles.b64c0534.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fluid-web/zh/" class="home-link router-link-active"><img src="/fluid-web/fluid-stacked-color.svg" alt="Fluid" class="logo"> <span class="site-name can-hide">Fluid</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="文档" class="dropdown-title"><span class="title">文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="文档" class="mobile-dropdown-title"><span class="title">文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/guide/" class="nav-link">
+  指南
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/dev/" class="nav-link">
+  开发
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/" class="nav-link router-link-active">
+  示例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="社区" class="dropdown-title"><span class="title">社区</span> <span class="arrow down"></span></button> <button type="button" aria-label="社区" class="mobile-dropdown-title"><span class="title">社区</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/community.html" class="nav-link">
+  社区
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/ADOPTERS.html" class="nav-link">
+  合作伙伴
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/technology/" class="nav-link">
+  技术内幕
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/releases/" class="nav-link">
+  版本发布
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/casestudy/" class="nav-link">
+  案例学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/monitoring.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="文档" class="dropdown-title"><span class="title">文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="文档" class="mobile-dropdown-title"><span class="title">文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/guide/" class="nav-link">
+  指南
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/dev/" class="nav-link">
+  开发
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/" class="nav-link router-link-active">
+  示例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="社区" class="dropdown-title"><span class="title">社区</span> <span class="arrow down"></span></button> <button type="button" aria-label="社区" class="mobile-dropdown-title"><span class="title">社区</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/community.html" class="nav-link">
+  社区
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/ADOPTERS.html" class="nav-link">
+  合作伙伴
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/technology/" class="nav-link">
+  技术内幕
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/releases/" class="nav-link">
+  版本发布
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/casestudy/" class="nav-link">
+  案例学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/monitoring.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/fluid-web/zh/samples/" aria-current="page" class="sidebar-link">示例 - 远程Web文件访问加速</a></li><li><a href="/fluid-web/zh/samples/accelerate_pvc.html" class="sidebar-link">示例 - 使用Fluid加速PVC</a></li><li><a href="/fluid-web/zh/samples/machinelearning.html" class="sidebar-link">示例 - 用Fluid加速机器学习训练</a></li><li><a href="/fluid-web/zh/samples/data_warmup.html" class="sidebar-link">示例 - 数据预加载</a></li><li><a href="/fluid-web/zh/samples/accelerate_hdfs.html" class="sidebar-link">示例 - HDFS Client文件访问加速</a></li><li><a href="/fluid-web/zh/samples/api_proxy.html" class="sidebar-link">示例 - 基于Restful的文件系统客户端</a></li><li><a href="/fluid-web/zh/samples/backup_and_restore_metadata.html" class="sidebar-link">示例-Dataset数据的的备份与恢复</a></li><li><a href="/fluid-web/zh/samples/data_co_locality.html" class="sidebar-link">示例 - 数据缓存亲和性调度</a></li><li><a href="/fluid-web/zh/samples/data_toleration.html" class="sidebar-link">示例 - 数据容忍污点调度</a></li><li><a href="/fluid-web/zh/samples/dataset_scaling.html" class="sidebar-link">示例 - Dataset手动扩缩容</a></li><li><a href="/fluid-web/zh/samples/fuse_affinity.html" class="sidebar-link">示例 - Fuse NodeSelector使用</a></li><li><a href="/fluid-web/zh/samples/hdfs_configuration.html" class="sidebar-link">示例 - Fluid访问HDFS所需的特殊配置</a></li><li><a href="/fluid-web/zh/samples/hostpath.html" class="sidebar-link">示例 - 使用Fluid加速主机目录</a></li><li><a href="/fluid-web/zh/samples/master_high_avaliability.html" class="sidebar-link">示例 - 配置 master 高可用模式</a></li><li><a href="/fluid-web/zh/samples/dataset_auto_scaling.html" class="sidebar-link">示例 - Dataset 自定义弹性扩缩容</a></li><li><a href="/fluid-web/zh/samples/dataset_cron_scaling.html" class="sidebar-link">示例 - Dataset 定时弹性扩缩容</a></li><li><a href="/fluid-web/zh/samples/monitoring.html" aria-current="page" class="active sidebar-link">示例 - 部署 prometheus 和 grafana 监控 Fluid 应用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fluid-web/zh/samples/monitoring.html#_1-部署或配置-prometheus" class="sidebar-link">1. 部署或配置 Prometheus</a></li><li class="sidebar-sub-header"><a href="/fluid-web/zh/samples/monitoring.html#_2-部署-grafana" class="sidebar-link">2. 部署 grafana</a></li><li class="sidebar-sub-header"><a href="/fluid-web/zh/samples/monitoring.html#_3-配置-grafana" class="sidebar-link">3. 配置 grafana</a></li></ul></li><li><a href="/fluid-web/zh/samples/pod_schedule_global.html" class="sidebar-link">示例 - Pod 调度优化</a></li><li><a href="/fluid-web/zh/samples/multi_dataset_same_node_accessing.html" class="sidebar-link">示例 - 单机多Dataset远程Web文件访问加速</a></li><li><a href="/fluid-web/zh/samples/nonroot_access.html" class="sidebar-link">示例 - 使用Fluid访问非root用户的数据</a></li><li><a href="/fluid-web/zh/samples/tieredstore_config.html" class="sidebar-link">示例 - Alluxio分层存储配置</a></li><li><a href="/fluid-web/zh/samples/use_encryptoptions.html" class="sidebar-link">示例 - 使用Secret配置Dataset敏感信息</a></li><li><a href="/fluid-web/zh/samples/fuse_recover.html" class="sidebar-link">示例 - 如何开启 FUSE 自动恢复能力</a></li><li><a href="/fluid-web/zh/samples/juicefs_runtime.html" class="sidebar-link">示例 - 如何在 Fluid 中使用 JuiceFS</a></li><li><a href="/fluid-web/zh/samples/juicefs_for_s3.html" class="sidebar-link">示例 - 如何在 Fluid 中使用 JuiceFS 同步 S3 中的数据</a></li><li><a href="/fluid-web/zh/samples/knative.html" class="sidebar-link">示例 - 如何运行在以Knative为例的Serverless环境中</a></li><li><a href="/fluid-web/zh/samples/application_controller.html" class="sidebar-link">示例 - 如何保障 Fluid 的 Serverless 任务顺利完成</a></li><li><a href="/fluid-web/zh/samples/gcs_configuration.html" class="sidebar-link">示例 - Fluid访问 Google Cloud Storage (GCS) 所需的特殊配置</a></li><li><a href="/fluid-web/zh/samples/s3_configuration.html" class="sidebar-link">示例 - Fluid访问AWS S3所需的特殊配置</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="示例-部署-prometheus-和-grafana-监控-fluid-应用"><a href="#示例-部署-prometheus-和-grafana-监控-fluid-应用" class="header-anchor">#</a> 示例 - 部署 prometheus 和 grafana 监控 Fluid 应用</h1> <p>注：prometheus 需要In-Cluster部署</p> <h2 id="_1-部署或配置-prometheus"><a href="#_1-部署或配置-prometheus" class="header-anchor">#</a> 1. 部署或配置 Prometheus</h2> <p>如果集群内无 prometheus:</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token builtin class-name">cd</span> fluid
+$ kubectl apply -f integration/prometheus/prometheus.yaml
+</code></pre></div><p>如集群内有 prometheus,可将以下配置写到 prometheus 配置文件中:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">scrape_configs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">job_name</span><span class="token punctuation">:</span> <span class="token string">'alluxio runtime'</span>
+    <span class="token key atrule">metrics_path</span><span class="token punctuation">:</span> /metrics/prometheus
+    <span class="token key atrule">kubernetes_sd_configs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">role</span><span class="token punctuation">:</span> endpoints
+    <span class="token key atrule">relabel_configs</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">source_labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>__meta_kubernetes_service_label_monitor<span class="token punctuation">]</span>
+      <span class="token key atrule">regex</span><span class="token punctuation">:</span> alluxio_runtime_metrics
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> keep
+    <span class="token punctuation">-</span> <span class="token key atrule">source_labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>__meta_kubernetes_endpoint_port_name<span class="token punctuation">]</span>
+      <span class="token key atrule">regex</span><span class="token punctuation">:</span> web
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> keep
+    <span class="token punctuation">-</span> <span class="token key atrule">source_labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>__meta_kubernetes_namespace<span class="token punctuation">]</span>
+      <span class="token key atrule">target_label</span><span class="token punctuation">:</span> namespace
+      <span class="token key atrule">replacement</span><span class="token punctuation">:</span> $1
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> replace
+    <span class="token punctuation">-</span> <span class="token key atrule">source_labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>__meta_kubernetes_service_label_release<span class="token punctuation">]</span>
+      <span class="token key atrule">target_label</span><span class="token punctuation">:</span> fluid_runtime
+      <span class="token key atrule">replacement</span><span class="token punctuation">:</span> $1
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> replace
+    <span class="token punctuation">-</span> <span class="token key atrule">source_labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>__meta_kubernetes_endpoint_address_target_name<span class="token punctuation">]</span>
+      <span class="token key atrule">target_label</span><span class="token punctuation">:</span> pod
+      <span class="token key atrule">replacement</span><span class="token punctuation">:</span> $1
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> replace
+</code></pre></div><h2 id="_2-部署-grafana"><a href="#_2-部署-grafana" class="header-anchor">#</a> 2. 部署 grafana</h2> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># docker 部署</span>
+$ <span class="token function">docker</span> run -d <span class="token punctuation">\</span>
+  -p <span class="token number">3000</span>:3000 <span class="token punctuation">\</span>
+  --name<span class="token operator">=</span>grafana <span class="token punctuation">\</span>
+  --restart<span class="token operator">=</span>always <span class="token punctuation">\</span>
+  --name grafana <span class="token punctuation">\</span>
+  grafana/grafana
+<span class="token comment"># In-CLuster 部署</span>
+$ <span class="token builtin class-name">cd</span> fluid
+$ kubectl apply -f integration/prometheus/grafana.yaml 
+</code></pre></div><h2 id="_3-配置-grafana"><a href="#_3-配置-grafana" class="header-anchor">#</a> 3. 配置 grafana</h2> <ol><li>登录 grafana
+如果以docker 方式部署，访问 <code>http://$grafana-node-ip:3000</code>;以 In-CLuster 方式部署，访问<code>http://$grafana-node-ip:NodePort</code>，默认账号密码 <code>admin:admin</code>:</li></ol> <div class="language- extra-class"><pre class="language-text"><code># 查看 NodePort
+$ kubectl describe svc monitoring-grafana -n kube-system
+</code></pre></div><ol start="2"><li>首先查看 prometheus svc 端口</li></ol> <div class="language- extra-class"><pre class="language-text"><code>$ kubectl get svc -n kube-system | grep prometheus-svc
+prometheus-svc             NodePort    10.100.0.144   &lt;none&gt;        9090:31245/TCP           22h
+$ kubectl describe svc prometheus-svc -n kube-system
+Name:                     prometheus-svc
+Namespace:                kube-system
+Labels:                   kubernetes.io/name=Prometheus
+                          name=prometheus-svc
+Annotations:              kubectl.kubernetes.io/last-applied-configuration:
+                            {&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;Service&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;labels&quot;:{&quot;kubernetes.io/name&quot;:&quot;Prometheus&quot;,&quot;name&quot;:&quot;prometheus-svc&quot;},&quot;nam...
+Selector:                 app=prometheus
+Type:                     NodePort
+IP:                       10.100.0.144
+Port:                     prometheus  9090/TCP
+TargetPort:               9090/TCP
+NodePort:                 prometheus  31245/TCP
+Endpoints:                10.99.224.138:9090
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+</code></pre></div><ol start="3"><li>配置 prometheus data source</li></ol> <p><img src="/fluid-web/assets/img/grafana-prometheus-setting.1a99b644.jpg" alt=""></p> <p>注: 如果 grafana In-Cluster 部署， URL 填写 Service Endpoints 即可；如果以 docker 方式部署，URL 填写prometheus 部署节点 ip:NodePort 即可
+导入完成后点击Save &amp; Test 显示 Data source is working 即可</p> <ol start="4"><li><p>导入模板文件
+grafana 选择导入模板 Json 文件 <code>fluid-prometheus-grafana-monitor.json</code>, 它的位置是<code>integration/prometheus/fluid-prometheus-grafana-monitor.json</code></p></li> <li><p>启动 fluid 任务</p></li></ol> <div class="language-yaml extra-class"><pre class="language-yaml"><code>$ cat&lt;&lt;EOF <span class="token punctuation">&gt;</span>dataset.yaml
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> data.fluid.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Dataset
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> spark
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPoint</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//mirrors.bit.edu.cn/apache/spark/
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> spark
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> data.fluid.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> AlluxioRuntime
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> spark
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">tieredstore</span><span class="token punctuation">:</span>
+    <span class="token key atrule">levels</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">mediumtype</span><span class="token punctuation">:</span> MEM
+        <span class="token key atrule">path</span><span class="token punctuation">:</span> /dev/shm
+        <span class="token key atrule">quota</span><span class="token punctuation">:</span> 1Gi
+        <span class="token key atrule">high</span><span class="token punctuation">:</span> <span class="token string">&quot;0.95&quot;</span>
+        <span class="token key atrule">low</span><span class="token punctuation">:</span> <span class="token string">&quot;0.7&quot;</span>
+  <span class="token comment"># 默认在v0.5.0版本之后，alluxio runtime已经开启了Prometheous数据，如果需要关闭可以主动设置disablePrometheus: true</span>
+  <span class="token comment"># disablePrometheus: false  </span>
+EOF
+</code></pre></div><blockquote><p>注意：默认Prometheous是开启的。如果需要关闭Prometheous，可以设置 disablePrometheus: true, 默认为 false</p></blockquote> <ol start="6"><li>查看监控
+在 grafana HOME 中知道名为Fluid-Prometheus-Grafana-Monitor视图即可，如下所示:</li></ol> <p><img src="/fluid-web/assets/img/grafana-monitor.25272ef2.jpg" alt=""></p> <p>注：User of runtime 对应Fluid Alluxio runtime user; fluid_runtime 对应Fluid runtime name; namespace 对应Fluid runtime namespace</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fluid-web/zh/samples/dataset_cron_scaling.html" class="prev">
+        示例 - Dataset 定时弹性扩缩容
+      </a></span> <span class="next"><a href="/fluid-web/zh/samples/pod_schedule_global.html">
+        示例 - Pod 调度优化
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/fluid-web/assets/js/app.58484d9a.js" defer></script><script src="/fluid-web/assets/js/2.e04d0034.js" defer></script><script src="/fluid-web/assets/js/12.14b1f880.js" defer></script>
+  </body>
+</html>

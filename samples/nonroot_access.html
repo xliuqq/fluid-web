@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Example - Using Fluid to access non-root user&#39;s data | Fluid</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/fluid-web/fluid-stacked-color.svg">
+    <meta name="description" content="Fluid, elastic data abstraction and acceleration for BigData/AI applications in cloud.">
+    
+    <link rel="preload" href="/fluid-web/assets/css/0.styles.b64c0534.css" as="style"><link rel="preload" href="/fluid-web/assets/js/app.58484d9a.js" as="script"><link rel="preload" href="/fluid-web/assets/js/2.e04d0034.js" as="script"><link rel="preload" href="/fluid-web/assets/js/47.3b313875.js" as="script"><link rel="prefetch" href="/fluid-web/assets/js/10.a9be955d.js"><link rel="prefetch" href="/fluid-web/assets/js/100.129f9b68.js"><link rel="prefetch" href="/fluid-web/assets/js/101.d17af958.js"><link rel="prefetch" href="/fluid-web/assets/js/102.1ff71569.js"><link rel="prefetch" href="/fluid-web/assets/js/11.67a03e31.js"><link rel="prefetch" href="/fluid-web/assets/js/12.14b1f880.js"><link rel="prefetch" href="/fluid-web/assets/js/13.2f5385ad.js"><link rel="prefetch" href="/fluid-web/assets/js/14.a2799770.js"><link rel="prefetch" href="/fluid-web/assets/js/15.befd4076.js"><link rel="prefetch" href="/fluid-web/assets/js/16.d438d3ef.js"><link rel="prefetch" href="/fluid-web/assets/js/17.dd94e399.js"><link rel="prefetch" href="/fluid-web/assets/js/18.2f78352d.js"><link rel="prefetch" href="/fluid-web/assets/js/19.6d147a14.js"><link rel="prefetch" href="/fluid-web/assets/js/20.1d732711.js"><link rel="prefetch" href="/fluid-web/assets/js/21.5187597e.js"><link rel="prefetch" href="/fluid-web/assets/js/22.71ab09c5.js"><link rel="prefetch" href="/fluid-web/assets/js/23.3d72a64f.js"><link rel="prefetch" href="/fluid-web/assets/js/24.d5f68a1e.js"><link rel="prefetch" href="/fluid-web/assets/js/25.aed6770e.js"><link rel="prefetch" href="/fluid-web/assets/js/26.caa44849.js"><link rel="prefetch" href="/fluid-web/assets/js/27.aff037f4.js"><link rel="prefetch" href="/fluid-web/assets/js/28.c902cbab.js"><link rel="prefetch" href="/fluid-web/assets/js/29.c4137934.js"><link rel="prefetch" href="/fluid-web/assets/js/3.bcceb8f1.js"><link rel="prefetch" href="/fluid-web/assets/js/30.994ccf9a.js"><link rel="prefetch" href="/fluid-web/assets/js/31.657914b4.js"><link rel="prefetch" href="/fluid-web/assets/js/32.91bcfdcf.js"><link rel="prefetch" href="/fluid-web/assets/js/33.a2059e28.js"><link rel="prefetch" href="/fluid-web/assets/js/34.57e4736e.js"><link rel="prefetch" href="/fluid-web/assets/js/35.387d2b05.js"><link rel="prefetch" href="/fluid-web/assets/js/36.9225825a.js"><link rel="prefetch" href="/fluid-web/assets/js/37.ab310be5.js"><link rel="prefetch" href="/fluid-web/assets/js/38.2ae53b39.js"><link rel="prefetch" href="/fluid-web/assets/js/39.f7c95bb1.js"><link rel="prefetch" href="/fluid-web/assets/js/4.4c33e4ef.js"><link rel="prefetch" href="/fluid-web/assets/js/40.29365d81.js"><link rel="prefetch" href="/fluid-web/assets/js/41.00b21e81.js"><link rel="prefetch" href="/fluid-web/assets/js/42.f26a2fc1.js"><link rel="prefetch" href="/fluid-web/assets/js/43.ad0554b1.js"><link rel="prefetch" href="/fluid-web/assets/js/44.1705b6b8.js"><link rel="prefetch" href="/fluid-web/assets/js/45.7bb8c2cc.js"><link rel="prefetch" href="/fluid-web/assets/js/46.191499fb.js"><link rel="prefetch" href="/fluid-web/assets/js/48.127c37d0.js"><link rel="prefetch" href="/fluid-web/assets/js/49.29ce3fcb.js"><link rel="prefetch" href="/fluid-web/assets/js/5.e8c8f60f.js"><link rel="prefetch" href="/fluid-web/assets/js/50.65e68756.js"><link rel="prefetch" href="/fluid-web/assets/js/51.3f20c16e.js"><link rel="prefetch" href="/fluid-web/assets/js/52.287b274d.js"><link rel="prefetch" href="/fluid-web/assets/js/53.c756a7eb.js"><link rel="prefetch" href="/fluid-web/assets/js/54.f9ad0013.js"><link rel="prefetch" href="/fluid-web/assets/js/55.a81ca815.js"><link rel="prefetch" href="/fluid-web/assets/js/56.2338c5b5.js"><link rel="prefetch" href="/fluid-web/assets/js/57.09a85349.js"><link rel="prefetch" href="/fluid-web/assets/js/58.f3d1ae4a.js"><link rel="prefetch" href="/fluid-web/assets/js/59.a12e2d5a.js"><link rel="prefetch" href="/fluid-web/assets/js/6.d793cf87.js"><link rel="prefetch" href="/fluid-web/assets/js/60.d5473957.js"><link rel="prefetch" href="/fluid-web/assets/js/61.8d234cc8.js"><link rel="prefetch" href="/fluid-web/assets/js/62.74120c38.js"><link rel="prefetch" href="/fluid-web/assets/js/63.265a2169.js"><link rel="prefetch" href="/fluid-web/assets/js/64.97092fd7.js"><link rel="prefetch" href="/fluid-web/assets/js/65.67b01819.js"><link rel="prefetch" href="/fluid-web/assets/js/66.11325633.js"><link rel="prefetch" href="/fluid-web/assets/js/67.6cee865e.js"><link rel="prefetch" href="/fluid-web/assets/js/68.ee89fb42.js"><link rel="prefetch" href="/fluid-web/assets/js/69.70ec4033.js"><link rel="prefetch" href="/fluid-web/assets/js/7.a35ec519.js"><link rel="prefetch" href="/fluid-web/assets/js/70.a65b8aa1.js"><link rel="prefetch" href="/fluid-web/assets/js/71.9cb5167d.js"><link rel="prefetch" href="/fluid-web/assets/js/72.241ca77a.js"><link rel="prefetch" href="/fluid-web/assets/js/73.24e19dfa.js"><link rel="prefetch" href="/fluid-web/assets/js/74.8ca128a4.js"><link rel="prefetch" href="/fluid-web/assets/js/75.60cd53a4.js"><link rel="prefetch" href="/fluid-web/assets/js/76.7abbeef5.js"><link rel="prefetch" href="/fluid-web/assets/js/77.d4016d0b.js"><link rel="prefetch" href="/fluid-web/assets/js/78.1b9c5155.js"><link rel="prefetch" href="/fluid-web/assets/js/79.39ddbbb1.js"><link rel="prefetch" href="/fluid-web/assets/js/8.8a9f5924.js"><link rel="prefetch" href="/fluid-web/assets/js/80.04fa3ae6.js"><link rel="prefetch" href="/fluid-web/assets/js/81.0ceead8d.js"><link rel="prefetch" href="/fluid-web/assets/js/82.bc1f789e.js"><link rel="prefetch" href="/fluid-web/assets/js/83.2f4556ec.js"><link rel="prefetch" href="/fluid-web/assets/js/84.8f6f5fb6.js"><link rel="prefetch" href="/fluid-web/assets/js/85.e0f68661.js"><link rel="prefetch" href="/fluid-web/assets/js/86.d46bb047.js"><link rel="prefetch" href="/fluid-web/assets/js/87.596bac92.js"><link rel="prefetch" href="/fluid-web/assets/js/88.bb08995d.js"><link rel="prefetch" href="/fluid-web/assets/js/89.90b826c8.js"><link rel="prefetch" href="/fluid-web/assets/js/9.6dcb2ee1.js"><link rel="prefetch" href="/fluid-web/assets/js/90.6266dd37.js"><link rel="prefetch" href="/fluid-web/assets/js/91.ccd035f7.js"><link rel="prefetch" href="/fluid-web/assets/js/92.0d1cd97c.js"><link rel="prefetch" href="/fluid-web/assets/js/93.6abddcb3.js"><link rel="prefetch" href="/fluid-web/assets/js/94.f1718f46.js"><link rel="prefetch" href="/fluid-web/assets/js/95.26e49185.js"><link rel="prefetch" href="/fluid-web/assets/js/96.7e6f7a54.js"><link rel="prefetch" href="/fluid-web/assets/js/97.fc29e47f.js"><link rel="prefetch" href="/fluid-web/assets/js/98.53616654.js"><link rel="prefetch" href="/fluid-web/assets/js/99.14d69198.js">
+    <link rel="stylesheet" href="/fluid-web/assets/css/0.styles.b64c0534.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fluid-web/" class="home-link router-link-active"><img src="/fluid-web/fluid-stacked-color.svg" alt="Fluid" class="logo"> <span class="site-name can-hide">Fluid</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docs" class="dropdown-title"><span class="title">Docs</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docs" class="mobile-dropdown-title"><span class="title">Docs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/guide/" class="nav-link">
+  Guide
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/dev/" class="nav-link">
+  Dev
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/samples/" class="nav-link router-link-active">
+  Samples
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Community" class="dropdown-title"><span class="title">Community</span> <span class="arrow down"></span></button> <button type="button" aria-label="Community" class="mobile-dropdown-title"><span class="title">Community</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/community/community.html" class="nav-link">
+  Community
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/community/ADOPTERS.html" class="nav-link">
+  Adopters
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Blog" class="dropdown-title"><span class="title">Blog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Blog" class="mobile-dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/blog/technology/" class="nav-link">
+  Technology
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/blog/releases/" class="nav-link">
+  Releases
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/blog/casestudy/" class="nav-link">
+  Case Study
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Languages</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/samples/nonroot_access.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/nonroot_access.html" class="nav-link">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docs" class="dropdown-title"><span class="title">Docs</span> <span class="arrow down"></span></button> <button type="button" aria-label="Docs" class="mobile-dropdown-title"><span class="title">Docs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/guide/" class="nav-link">
+  Guide
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/dev/" class="nav-link">
+  Dev
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/samples/" class="nav-link router-link-active">
+  Samples
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Community" class="dropdown-title"><span class="title">Community</span> <span class="arrow down"></span></button> <button type="button" aria-label="Community" class="mobile-dropdown-title"><span class="title">Community</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/community/community.html" class="nav-link">
+  Community
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/community/ADOPTERS.html" class="nav-link">
+  Adopters
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Blog" class="dropdown-title"><span class="title">Blog</span> <span class="arrow down"></span></button> <button type="button" aria-label="Blog" class="mobile-dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/blog/technology/" class="nav-link">
+  Technology
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/blog/releases/" class="nav-link">
+  Releases
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/blog/casestudy/" class="nav-link">
+  Case Study
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Languages</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/samples/nonroot_access.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/nonroot_access.html" class="nav-link">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/fluid-web/samples/" aria-current="page" class="sidebar-link">DEMO - Speed Up Accessing Remote Files</a></li><li><a href="/fluid-web/samples/accelerate_pvc.html" class="sidebar-link">DEMO - Accelerate PVC with Fluid</a></li><li><a href="/fluid-web/samples/machinelearning.html" class="sidebar-link">DEMO - Accelerate Machine Learning Training with Fluid</a></li><li><a href="/fluid-web/samples/data_warmup.html" class="sidebar-link">Demo - Data Preloading</a></li><li><a href="/fluid-web/samples/accelerate_hdfs.html" class="sidebar-link">DEMO - Speed Up Accessing HDFS Client Files</a></li><li><a href="/fluid-web/samples/accelerate_s3_minio.html" class="sidebar-link">DEMO - Speed Up Accessing Minio Files</a></li><li><a href="/fluid-web/samples/data_co_locality.html" class="sidebar-link">DEMO - Cache Co-locality for Workload Scheduling</a></li><li><a href="/fluid-web/samples/multi_dataset_same_node_accessing.html" class="sidebar-link">DEMO - Single-Machine Multiple-Dataset Speed Up Accessing Remote Files</a></li><li><a href="/fluid-web/samples/nonroot_access.html" aria-current="page" class="active sidebar-link">Example - Using Fluid to access non-root user's data</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fluid-web/samples/nonroot_access.html#prerequisites" class="sidebar-link">Prerequisites</a></li><li class="sidebar-sub-header"><a href="/fluid-web/samples/nonroot_access.html#running-example" class="sidebar-link">Running Example</a></li><li class="sidebar-sub-header"><a href="/fluid-web/samples/nonroot_access.html#environment-cleanup" class="sidebar-link">Environment Cleanup</a></li></ul></li><li><a href="/fluid-web/samples/tieredstore_config.html" class="sidebar-link">Demo - Alluxio Tieredstore Configuration</a></li><li><a href="/fluid-web/samples/use_encryptoptions.html" class="sidebar-link">DEMO - Use Secret to configure Dataset sensitive information</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="example-using-fluid-to-access-non-root-user-s-data"><a href="#example-using-fluid-to-access-non-root-user-s-data" class="header-anchor">#</a> Example - Using Fluid to access non-root user's data</h1> <p>If the user data could only be access by specific uid, Runtime's 'RunAs' parameter should be set to let specific user run distributed data caching engine, to access underlying data.</p> <p>This document demonstrates the above features with a simple example.</p> <h2 id="prerequisites"><a href="#prerequisites" class="header-anchor">#</a> Prerequisites</h2> <ul><li><a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer">Fluid<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>(version &gt;= 0.3.0)</li></ul> <p>Please refer to <a href="/fluid-web/guide/install.html">Fluid installation documentation</a> to complete installation.</p> <h2 id="running-example"><a href="#running-example" class="header-anchor">#</a> Running Example</h2> <p><strong>Create a non-root user</strong></p> <div class="language- extra-class"><pre class="language-text"><code>$ groupadd -g 1201 fluid-user-1 &amp;&amp; \
+useradd -u 1201 -g fluid-user-1 fluid-user-1
+</code></pre></div><p>The above command creates a non-root user<code>fluid-user-1</code></p> <p><strong>Create a directory that belongs to the user</strong></p> <div class="language- extra-class"><pre class="language-text"><code>$ mkdir -p /mnt/nonroot/user1_data &amp;&amp; \
+echo &quot;This is fluid-user-1's data&quot; &gt; /mnt/nonroot/user1_data/data1 &amp;&amp; \
+chown -R fluid-user-1:fluid-user-1 /mnt/nonroot/user1_data &amp;&amp; \
+chmod -R 0750 /mnt/nonroot/user1_data
+</code></pre></div><p>The above command creates a directory <code>user1_data</code> belonging to <code>fluid-user-1</code> in the <code>/mnt/nonroot</code> directory, We will use the <code>data1</code> file in the <code>user1_data</code> directory to represent the data owned by <code>fluid-user-1</code></p> <div class="language- extra-class"><pre class="language-text"><code>$ ls -ltR /mnt/nonroot
+</code></pre></div><p>Using the above command, you will see the following results</p> <div class="language- extra-class"><pre class="language-text"><code>/mnt/nonroot/:
+total 4
+drwxr-x--- 2 fluid-user-1 fluid-user-1 4096 9月  27 16:45 user1_data
+
+/mnt/nonroot/user1_data:
+total 4
+-rwxr-x--- 1 fluid-user-1 fluid-user-1 28 9月  27 16:45 data1
+</code></pre></div><p><strong>Create Dataset and AlluxioRuntime resource object</strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code>$ cat&lt;&lt;EOF <span class="token punctuation">&gt;</span>dataset.yaml
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> data.fluid.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Dataset
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nonroot
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mounts</span><span class="token punctuation">:</span>
+    <span class="token comment"># Specify the directory you just created as the mount point</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">mountPoint</span><span class="token punctuation">:</span> local<span class="token punctuation">:</span>///mnt/nonroot/
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> nonroot
+  <span class="token comment"># Ensure that the data cache is placed at the node where the /mnt/nonroot directory exists</span>
+  <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
+    <span class="token key atrule">required</span><span class="token punctuation">:</span>
+      <span class="token key atrule">nodeSelectorTerms</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> nonroot
+              <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
+              <span class="token key atrule">values</span><span class="token punctuation">:</span>
+                <span class="token punctuation">-</span> <span class="token string">&quot;true&quot;</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> data.fluid.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> AlluxioRuntime
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nonroot
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">tieredstore</span><span class="token punctuation">:</span>
+    <span class="token key atrule">levels</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">mediumtype</span><span class="token punctuation">:</span> SSD
+        <span class="token key atrule">path</span><span class="token punctuation">:</span> /var/lib/docker/alluxio
+        <span class="token key atrule">quota</span><span class="token punctuation">:</span> 2Gi
+        <span class="token key atrule">high</span><span class="token punctuation">:</span> <span class="token string">&quot;0.95&quot;</span>
+        <span class="token key atrule">low</span><span class="token punctuation">:</span> <span class="token string">&quot;0.7&quot;</span>
+  <span class="token comment"># start Alluxio as the fluid-user-1 user</span>
+  <span class="token key atrule">runAs</span><span class="token punctuation">:</span>
+    <span class="token key atrule">uid</span><span class="token punctuation">:</span> <span class="token number">1201</span>
+    <span class="token key atrule">gid</span><span class="token punctuation">:</span> <span class="token number">1201</span>
+    <span class="token key atrule">user</span><span class="token punctuation">:</span> fluid<span class="token punctuation">-</span>user<span class="token punctuation">-</span><span class="token number">1</span>
+    <span class="token key atrule">group</span><span class="token punctuation">:</span> fluid<span class="token punctuation">-</span>user<span class="token punctuation">-</span><span class="token number">1</span>
+  <span class="token key atrule">fuse</span><span class="token punctuation">:</span>
+    <span class="token key atrule">args</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> fuse
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>fuse<span class="token punctuation">-</span>opts=kernel_cache<span class="token punctuation">,</span>ro<span class="token punctuation">,</span>max_read=131072<span class="token punctuation">,</span>attr_timeout=7200<span class="token punctuation">,</span>entry_timeout=7200<span class="token punctuation">,</span>max_readahead=0
+EOF
+</code></pre></div><p>In the above yaml configuration file, we will mount the directory we just created (/mnt/nonroot ') in the same way as the Fluid host directory. For more information about Fluid mount host directory, please refer to <a href="/fluid-web/samples/hostpath.html">example - use Fluid to accelerate host directory</a></p> <p>In addition, in <code>spec.runAs</code> we have set user information such as <code>uid</code>, which means that we are going to start the caching engine as a <code>fluid-user-1</code> user to provide distributed caching capabilities</p> <p><strong>Log into the Application</strong></p> <div class="language- extra-class"><pre class="language-text"><code>$ kubectl exec -it nginx -- bash
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>$ id
+</code></pre></div><p>Using the above command, you will see the following results:</p> <div class="language- extra-class"><pre class="language-text"><code>uid=1201 gid=1201 groups=1201
+</code></pre></div><p>This indicates that we started the application as a user with <code>uid</code> of 1201</p> <p><strong>Access Data</strong></p> <div class="language- extra-class"><pre class="language-text"><code>$ ls -ltR /data
+</code></pre></div><p>Using the above command, you will see the following results:</p> <div class="language- extra-class"><pre class="language-text"><code>/data/:
+total 1
+drwxr-xr-x 1 root root 1 Sep 27 08:45 nonroot
+
+/data/nonroot:
+total 1
+drwxr-x--- 1 1201 1201 1 Sep 27 08:45 user1_data
+
+/data/nonroot/user1_data:
+total 1
+-rwxr-x--- 1 1201 1201 28 Sep 27 08:45 data1
+</code></pre></div><p>As you can see, Fluid exposes data belonging to a non-root user to applications that require it in the manner of <strong>passthrough</strong>, and the file information for the user's data does not change</p> <p>Of course, the user is free to access the data:</p> <div class="language- extra-class"><pre class="language-text"><code>$ cat /data/nonroot/user1_data/data1
+</code></pre></div><p>Using the above command, you will see the following results:</p> <div class="language- extra-class"><pre class="language-text"><code>This is fluid-user-1's data
+</code></pre></div><h2 id="environment-cleanup"><a href="#environment-cleanup" class="header-anchor">#</a> Environment Cleanup</h2> <div class="language- extra-class"><pre class="language-text"><code>$ kubectl delete -f .
+$ rm -rf /mnt/nonroot
+$ userdel fluid-user-1
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fluid-web/samples/multi_dataset_same_node_accessing.html" class="prev">
+        DEMO - Single-Machine Multiple-Dataset Speed Up Accessing Remote Files
+      </a></span> <span class="next"><a href="/fluid-web/samples/tieredstore_config.html">
+        Demo - Alluxio Tieredstore Configuration
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/fluid-web/assets/js/app.58484d9a.js" defer></script><script src="/fluid-web/assets/js/2.e04d0034.js" defer></script><script src="/fluid-web/assets/js/47.3b313875.js" defer></script>
+  </body>
+</html>

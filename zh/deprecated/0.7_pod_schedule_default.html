@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>示例 - Pod 调度优化 | Fluid</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/fluid-web/fluid-stacked-color.svg">
+    <meta name="description" content="Fluid, 在云上为大数据以及AI应用的弹性数据提供抽象和加速服务。">
+    
+    <link rel="preload" href="/fluid-web/assets/css/0.styles.b64c0534.css" as="style"><link rel="preload" href="/fluid-web/assets/js/app.58484d9a.js" as="script"><link rel="preload" href="/fluid-web/assets/js/2.e04d0034.js" as="script"><link rel="preload" href="/fluid-web/assets/js/63.265a2169.js" as="script"><link rel="prefetch" href="/fluid-web/assets/js/10.a9be955d.js"><link rel="prefetch" href="/fluid-web/assets/js/100.129f9b68.js"><link rel="prefetch" href="/fluid-web/assets/js/101.d17af958.js"><link rel="prefetch" href="/fluid-web/assets/js/102.1ff71569.js"><link rel="prefetch" href="/fluid-web/assets/js/11.67a03e31.js"><link rel="prefetch" href="/fluid-web/assets/js/12.14b1f880.js"><link rel="prefetch" href="/fluid-web/assets/js/13.2f5385ad.js"><link rel="prefetch" href="/fluid-web/assets/js/14.a2799770.js"><link rel="prefetch" href="/fluid-web/assets/js/15.befd4076.js"><link rel="prefetch" href="/fluid-web/assets/js/16.d438d3ef.js"><link rel="prefetch" href="/fluid-web/assets/js/17.dd94e399.js"><link rel="prefetch" href="/fluid-web/assets/js/18.2f78352d.js"><link rel="prefetch" href="/fluid-web/assets/js/19.6d147a14.js"><link rel="prefetch" href="/fluid-web/assets/js/20.1d732711.js"><link rel="prefetch" href="/fluid-web/assets/js/21.5187597e.js"><link rel="prefetch" href="/fluid-web/assets/js/22.71ab09c5.js"><link rel="prefetch" href="/fluid-web/assets/js/23.3d72a64f.js"><link rel="prefetch" href="/fluid-web/assets/js/24.d5f68a1e.js"><link rel="prefetch" href="/fluid-web/assets/js/25.aed6770e.js"><link rel="prefetch" href="/fluid-web/assets/js/26.caa44849.js"><link rel="prefetch" href="/fluid-web/assets/js/27.aff037f4.js"><link rel="prefetch" href="/fluid-web/assets/js/28.c902cbab.js"><link rel="prefetch" href="/fluid-web/assets/js/29.c4137934.js"><link rel="prefetch" href="/fluid-web/assets/js/3.bcceb8f1.js"><link rel="prefetch" href="/fluid-web/assets/js/30.994ccf9a.js"><link rel="prefetch" href="/fluid-web/assets/js/31.657914b4.js"><link rel="prefetch" href="/fluid-web/assets/js/32.91bcfdcf.js"><link rel="prefetch" href="/fluid-web/assets/js/33.a2059e28.js"><link rel="prefetch" href="/fluid-web/assets/js/34.57e4736e.js"><link rel="prefetch" href="/fluid-web/assets/js/35.387d2b05.js"><link rel="prefetch" href="/fluid-web/assets/js/36.9225825a.js"><link rel="prefetch" href="/fluid-web/assets/js/37.ab310be5.js"><link rel="prefetch" href="/fluid-web/assets/js/38.2ae53b39.js"><link rel="prefetch" href="/fluid-web/assets/js/39.f7c95bb1.js"><link rel="prefetch" href="/fluid-web/assets/js/4.4c33e4ef.js"><link rel="prefetch" href="/fluid-web/assets/js/40.29365d81.js"><link rel="prefetch" href="/fluid-web/assets/js/41.00b21e81.js"><link rel="prefetch" href="/fluid-web/assets/js/42.f26a2fc1.js"><link rel="prefetch" href="/fluid-web/assets/js/43.ad0554b1.js"><link rel="prefetch" href="/fluid-web/assets/js/44.1705b6b8.js"><link rel="prefetch" href="/fluid-web/assets/js/45.7bb8c2cc.js"><link rel="prefetch" href="/fluid-web/assets/js/46.191499fb.js"><link rel="prefetch" href="/fluid-web/assets/js/47.3b313875.js"><link rel="prefetch" href="/fluid-web/assets/js/48.127c37d0.js"><link rel="prefetch" href="/fluid-web/assets/js/49.29ce3fcb.js"><link rel="prefetch" href="/fluid-web/assets/js/5.e8c8f60f.js"><link rel="prefetch" href="/fluid-web/assets/js/50.65e68756.js"><link rel="prefetch" href="/fluid-web/assets/js/51.3f20c16e.js"><link rel="prefetch" href="/fluid-web/assets/js/52.287b274d.js"><link rel="prefetch" href="/fluid-web/assets/js/53.c756a7eb.js"><link rel="prefetch" href="/fluid-web/assets/js/54.f9ad0013.js"><link rel="prefetch" href="/fluid-web/assets/js/55.a81ca815.js"><link rel="prefetch" href="/fluid-web/assets/js/56.2338c5b5.js"><link rel="prefetch" href="/fluid-web/assets/js/57.09a85349.js"><link rel="prefetch" href="/fluid-web/assets/js/58.f3d1ae4a.js"><link rel="prefetch" href="/fluid-web/assets/js/59.a12e2d5a.js"><link rel="prefetch" href="/fluid-web/assets/js/6.d793cf87.js"><link rel="prefetch" href="/fluid-web/assets/js/60.d5473957.js"><link rel="prefetch" href="/fluid-web/assets/js/61.8d234cc8.js"><link rel="prefetch" href="/fluid-web/assets/js/62.74120c38.js"><link rel="prefetch" href="/fluid-web/assets/js/64.97092fd7.js"><link rel="prefetch" href="/fluid-web/assets/js/65.67b01819.js"><link rel="prefetch" href="/fluid-web/assets/js/66.11325633.js"><link rel="prefetch" href="/fluid-web/assets/js/67.6cee865e.js"><link rel="prefetch" href="/fluid-web/assets/js/68.ee89fb42.js"><link rel="prefetch" href="/fluid-web/assets/js/69.70ec4033.js"><link rel="prefetch" href="/fluid-web/assets/js/7.a35ec519.js"><link rel="prefetch" href="/fluid-web/assets/js/70.a65b8aa1.js"><link rel="prefetch" href="/fluid-web/assets/js/71.9cb5167d.js"><link rel="prefetch" href="/fluid-web/assets/js/72.241ca77a.js"><link rel="prefetch" href="/fluid-web/assets/js/73.24e19dfa.js"><link rel="prefetch" href="/fluid-web/assets/js/74.8ca128a4.js"><link rel="prefetch" href="/fluid-web/assets/js/75.60cd53a4.js"><link rel="prefetch" href="/fluid-web/assets/js/76.7abbeef5.js"><link rel="prefetch" href="/fluid-web/assets/js/77.d4016d0b.js"><link rel="prefetch" href="/fluid-web/assets/js/78.1b9c5155.js"><link rel="prefetch" href="/fluid-web/assets/js/79.39ddbbb1.js"><link rel="prefetch" href="/fluid-web/assets/js/8.8a9f5924.js"><link rel="prefetch" href="/fluid-web/assets/js/80.04fa3ae6.js"><link rel="prefetch" href="/fluid-web/assets/js/81.0ceead8d.js"><link rel="prefetch" href="/fluid-web/assets/js/82.bc1f789e.js"><link rel="prefetch" href="/fluid-web/assets/js/83.2f4556ec.js"><link rel="prefetch" href="/fluid-web/assets/js/84.8f6f5fb6.js"><link rel="prefetch" href="/fluid-web/assets/js/85.e0f68661.js"><link rel="prefetch" href="/fluid-web/assets/js/86.d46bb047.js"><link rel="prefetch" href="/fluid-web/assets/js/87.596bac92.js"><link rel="prefetch" href="/fluid-web/assets/js/88.bb08995d.js"><link rel="prefetch" href="/fluid-web/assets/js/89.90b826c8.js"><link rel="prefetch" href="/fluid-web/assets/js/9.6dcb2ee1.js"><link rel="prefetch" href="/fluid-web/assets/js/90.6266dd37.js"><link rel="prefetch" href="/fluid-web/assets/js/91.ccd035f7.js"><link rel="prefetch" href="/fluid-web/assets/js/92.0d1cd97c.js"><link rel="prefetch" href="/fluid-web/assets/js/93.6abddcb3.js"><link rel="prefetch" href="/fluid-web/assets/js/94.f1718f46.js"><link rel="prefetch" href="/fluid-web/assets/js/95.26e49185.js"><link rel="prefetch" href="/fluid-web/assets/js/96.7e6f7a54.js"><link rel="prefetch" href="/fluid-web/assets/js/97.fc29e47f.js"><link rel="prefetch" href="/fluid-web/assets/js/98.53616654.js"><link rel="prefetch" href="/fluid-web/assets/js/99.14d69198.js">
+    <link rel="stylesheet" href="/fluid-web/assets/css/0.styles.b64c0534.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fluid-web/zh/" class="home-link router-link-active"><img src="/fluid-web/fluid-stacked-color.svg" alt="Fluid" class="logo"> <span class="site-name can-hide">Fluid</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="文档" class="dropdown-title"><span class="title">文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="文档" class="mobile-dropdown-title"><span class="title">文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/guide/" class="nav-link">
+  指南
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/dev/" class="nav-link">
+  开发
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/" class="nav-link">
+  示例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="社区" class="dropdown-title"><span class="title">社区</span> <span class="arrow down"></span></button> <button type="button" aria-label="社区" class="mobile-dropdown-title"><span class="title">社区</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/community.html" class="nav-link">
+  社区
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/ADOPTERS.html" class="nav-link">
+  合作伙伴
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/technology/" class="nav-link">
+  技术内幕
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/releases/" class="nav-link">
+  版本发布
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/casestudy/" class="nav-link">
+  案例学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/deprecated/0.7_pod_schedule_default.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="文档" class="dropdown-title"><span class="title">文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="文档" class="mobile-dropdown-title"><span class="title">文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/guide/" class="nav-link">
+  指南
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/dev/" class="nav-link">
+  开发
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/samples/" class="nav-link">
+  示例
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="社区" class="dropdown-title"><span class="title">社区</span> <span class="arrow down"></span></button> <button type="button" aria-label="社区" class="mobile-dropdown-title"><span class="title">社区</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/community.html" class="nav-link">
+  社区
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/community/ADOPTERS.html" class="nav-link">
+  合作伙伴
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/technology/" class="nav-link">
+  技术内幕
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/releases/" class="nav-link">
+  版本发布
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/blog/casestudy/" class="nav-link">
+  案例学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="Select language" class="mobile-dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fluid-web/" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/fluid-web/zh/deprecated/0.7_pod_schedule_default.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/fluid-cloudnative/fluid" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="示例-pod-调度优化"><a href="#示例-pod-调度优化" class="header-anchor">#</a> 示例 - Pod 调度优化</h1> <p>为了帮助用户更好的使用fluid，我们提供了一系列调度插件。
+通过为Pod自动注入亲和性相关信息，优化Pod的调度结果，提高集群的整体使用效率。</p> <h2 id="前提条件"><a href="#前提条件" class="header-anchor">#</a> 前提条件</h2> <p>您使用的k8s版本需要支持 admissionregistration.k8s.io/v1beta1（ Kubernetes version &gt; 1.14 )</p> <h2 id="使用方法"><a href="#使用方法" class="header-anchor">#</a> 使用方法</h2> <p><strong>查看全部节点</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get no
+NAME                      STATUS   ROLES    AGE   VERSION
+node.172.16.0.16   Ready    <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   13d   v1.20.4
+node.172.16.1.84   Ready    <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   13d   v1.20.4
+</code></pre></div><p><strong>检查待创建的Dataset资源对象</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ cat<span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>dataset.yaml</span>
+apiVersion: data.fluid.io/v1alpha1
+kind: Dataset
+metadata:
+  name: hbase
+spec:
+  mounts:
+    - mountPoint: https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/stable/
+      name: hbase
+---
+apiVersion: data.fluid.io/v1alpha1
+kind: AlluxioRuntime
+metadata:
+  name: hbase
+spec:
+  replicas: 1
+  tieredstore:
+    levels:
+      - mediumtype: MEM
+        path: /dev/shm
+        quota: 2Gi
+        high: &quot;0.95&quot;
+        low: &quot;0.7&quot;
+EOF</span>
+</code></pre></div><p><strong>创建Dataset资源对象</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl create -f dataset.yaml
+dataset.data.fluid.io/hbase created
+</code></pre></div><p><strong>创建AlluxioRuntime资源并查看状态</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl create -f runtime.yaml
+alluxioruntime.data.fluid.io/hbase created
+
+$ kubectl get po -owide
+NAME                 READY   STATUS    RESTARTS   AGE   IP            NODE                      NOMINATED NODE   READINESS GATES
+hbase-fuse-fdjpg     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          94m   <span class="token number">172.16</span>.0.16   node.172.16.0.16   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+hbase-master-0       <span class="token number">2</span>/2     Running   <span class="token number">0</span>          97m   <span class="token number">172.16</span>.0.16   node.172.16.0.16   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+hbase-worker-ch8k7   <span class="token number">2</span>/2     Running   <span class="token number">0</span>          94m   <span class="token number">172.16</span>.0.16   node.172.16.0.16   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><p>在此处可以看到，有一个Alluxio Worker成功启动，并且运行在节点172.16.0.16上。Alluixo Fuse的数量为1，也运行在节点172.16.0.16上。</p> <h2 id="运行示例1-创建没有挂载数据集的pod-它将尽量远离部署有数据集的节点"><a href="#运行示例1-创建没有挂载数据集的pod-它将尽量远离部署有数据集的节点" class="header-anchor">#</a> 运行示例1: 创建没有挂载数据集的Pod，它将尽量远离部署有数据集的节点</h2> <p><strong>创建Pod</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ cat<span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>nginx.yaml</span>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+EOF</span>
+$ kubectl create -f nginx.yaml
+</code></pre></div><p><strong>查看Pod</strong></p> <p>查看Pod的yaml文件，发现被注入了如下信息：</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
+      <span class="token key atrule">preferredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">preference</span><span class="token punctuation">:</span>
+            <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> fluid.io/dataset<span class="token punctuation">-</span>num
+                <span class="token key atrule">operator</span><span class="token punctuation">:</span> DoesNotExist
+          <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">100</span>
+</code></pre></div><p>正如亲和性所影响的，Pod调度到了没有缓存的node.172.16.1.84节点。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get pods nginx -o  custom-columns<span class="token operator">=</span>NAME:metadata.name,NODE:.spec.nodeName
+NAME    NODE
+nginx   node.172.16.1.84
+</code></pre></div><h2 id="运行示例2-创建挂载数据集的pod-可以观测到它被调度到有数据集的节点"><a href="#运行示例2-创建挂载数据集的pod-可以观测到它被调度到有数据集的节点" class="header-anchor">#</a> 运行示例2: 创建挂载数据集的Pod，可以观测到它被调度到有数据集的节点</h2> <p><strong>创建Pod</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ cat<span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>nginx.yaml</span>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - mountPath: /data
+          name: hbase-vol
+  volumes:
+    - name: hbase-vol
+      persistentVolumeClaim:
+        claimName: hbase
+EOF</span>
+$ kubectl create -f nginx.yaml
+</code></pre></div><p><strong>查看Pod</strong></p> <p>查看Pod的yaml文件，发现被注入了如下信息：</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">affinity</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nodeAffinity</span><span class="token punctuation">:</span>
+      <span class="token key atrule">requiredDuringSchedulingIgnoredDuringExecution</span><span class="token punctuation">:</span>
+        <span class="token key atrule">nodeSelectorTerms</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">matchExpressions</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">key</span><span class="token punctuation">:</span> fluid.io/s<span class="token punctuation">-</span>default<span class="token punctuation">-</span>hbase
+            <span class="token key atrule">operator</span><span class="token punctuation">:</span> In
+            <span class="token key atrule">values</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token string">&quot;true&quot;</span>
+</code></pre></div><p>正如亲和性所影响的，Pod会强制调度到了有缓存的node.172.16.0.16节点。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get pods nginx -o  custom-columns<span class="token operator">=</span>NAME:metadata.name,NODE:.spec.nodeName
+NAME    NODE
+nginx   node.172.16.0.16
+</code></pre></div><blockquote><p>注释： K8s默认调度器并不需要配置强制亲和性，但是如果使用一些类似Volcano，Yunikorn等调度器组件并不感知K8s原生数据卷的亲和性，导致应用调度</p></blockquote></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/fluid-web/assets/js/app.58484d9a.js" defer></script><script src="/fluid-web/assets/js/2.e04d0034.js" defer></script><script src="/fluid-web/assets/js/63.265a2169.js" defer></script>
+  </body>
+</html>
