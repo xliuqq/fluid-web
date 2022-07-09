@@ -1,0 +1,24 @@
+{
+  "name": "fluid-web",
+  "version": "1.0.0",
+  "description": "fluid cloudnative web source",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.9.7",
+    "element-ui": "^2.15.9"
+  },
+  "dependencies": {
+    "vuepress": "^1.9.7",
+    "element-ui": "^2.15.9",
+    "async-validator": "^1.11.5",
+    "core-js": "^3.15.2"
+  }
+}
